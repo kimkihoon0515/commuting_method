@@ -36,6 +36,9 @@ jobs:
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
         sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
+    - name: check chromedriver
+      run: |
+        ls /home/ubuntu/
     - name: Run main.py
       run: |
         python main.py
