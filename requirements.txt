@@ -1,4 +1,4 @@
 selenium==4.13.0
 webdriver-manager==4.0.1
-github-utils==0.1.0
+PyGithub==2.1.1
 pytz==2023.3

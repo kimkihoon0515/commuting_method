@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 import os
-from github_utils import get_github_repo, upload_github_issue
+from github import Github
 from datetime import datetime
 from pytz import timezone
 
@@ -18,8 +18,8 @@ def issue_push(message):
     today_date = today.strftime("%Y년 %m월 %d일")
     issue_title = f"{today_date}의 추천 통근방법"
 
-    repo = get_github_repo(access_token, repository_name)
-    upload_github_issue(repo, issue_title, message)
+    repo = Github(access_token).get_user().get_repo(repository_name)
+    repo.create_issue(title=issue_title,body=message)
     return True
 
 service = Service(ChromeDriverManager().install())
