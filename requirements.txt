@@ -1,2 +1,4 @@
 selenium==4.13.0
 webdriver-manager==4.0.1
+github==1.2.7
+pytz==2023.3

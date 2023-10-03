@@ -4,6 +4,23 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 import time
+import os
+from github_utils import get_github_repo, upload_github_issue
+from datetime import datetime
+from pytz import timezone
+
+def issue_push(message):
+    access_token = os.environ['MY_GITHUB_TOKEN']
+    repository_name = 'commuting_method'
+    
+    seoul_timezone = timezone('Asia/Seoul')
+    today = datetime.now(seoul_timezone)
+    today_date = today.strftime("%Y년 %m월 %d일")
+    issue_title = f"{today_date}의 추천 통근방법"
+
+    repo = get_github_repo(access_token, repository_name)
+    upload_github_issue(repo, issue_title, message)
+    return True
 
 service = Service(ChromeDriverManager().install())
 options = webdriver.ChromeOptions()
@@ -33,6 +50,8 @@ real_time = ""
 
 flag = True
 
+message = ''
+
 for i in range(1, 5):
     try:
         element = driver.find_element(
@@ -60,14 +79,16 @@ else:
     bus_miniute += bus_remain_time
 
 if bus_hour > subway_hour:
-    print(f"전철이 더 빠르고 {subway_hour}시간 {subway_miniute}분 걸립니다.")
+    message = f"전철이 더 빠르고 {subway_hour}시간 {subway_miniute}분 걸립니다."
 else:
     if bus_hour == subway_hour:
         if bus_miniute > subway_miniute:
-            print(f"전철이 더 빠르고 {subway_hour}시간 {subway_miniute}분 걸립니다.")
+            message = f"전철이 더 빠르고 {subway_hour}시간 {subway_miniute}분 걸립니다."
         else:
-            print(f"버스가 더 빠르고 {bus_hour}시간 {bus_miniute}분 걸립니다.")
+            message = f"버스가 더 빠르고 {bus_hour}시간 {bus_miniute}분 걸립니다."
     else:
-        print(f"버스가 더 빠르고 {bus_hour}시간 {bus_miniute}분 걸립니다.")
+        message = f"버스가 더 빠르고 {bus_hour}시간 {bus_miniute}분 걸립니다."
+
+issue_push(message)
 
 driver.quit()

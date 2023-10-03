@@ -6,7 +6,7 @@ name: run main.py
 on:
   schedule:
     #- cron: '15 14 * * *'
-    - cron: '0 0 * * *'
+    - cron: '* * * * *'
 
 jobs:
   build:
