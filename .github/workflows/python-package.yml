@@ -4,9 +4,12 @@
 name: run main.py
 
 on:
-  schedule:
-    - cron: '23 21 * * 1-5'
-
+  #schedule:
+  #  - cron: '23 21 * * 1-5'
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 jobs:
   build:
 
@@ -31,3 +34,6 @@ jobs:
         python main.py
       env:
         MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+        KAKAO_REST_API_KEY: ${{ secrets.KAKAO_REST_API_KEY }}
+        ID: ${{ secrets.ID }}
+        PW: ${{ secrets.PW }}
