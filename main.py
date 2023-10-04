@@ -25,6 +25,8 @@ def issue_push(message):
     return True
 
 if __name__ == "__main__":
+    id = os.environ['ID']
+    print(id)
     service = Service(ChromeDriverManager().install())
     options = webdriver.ChromeOptions()
     options.add_argument("headless")
