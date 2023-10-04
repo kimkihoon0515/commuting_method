@@ -16,6 +16,7 @@ def post_initial_token():
     rest_api_key = os.environ['KAKAO_REST_API_KEY']
     id = os.environ['ID']
     pw = os.environ['PW']
+    print(id)
 
     api = Message(service_key=rest_api_key)
     auth_url = api.get_url_for_generating_code()
