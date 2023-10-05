@@ -37,3 +37,4 @@ jobs:
         KAKAO_REST_API_KEY: ${{ secrets.KAKAO_REST_API_KEY }}
         ID: ${{ secrets.ID }}
         PW: ${{ secrets.PW }}
+        REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
