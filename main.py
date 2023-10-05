@@ -94,8 +94,6 @@ if __name__ == "__main__":
 
     issue_push(message)
 
-
-    post_initial_token()
     renew_token()
     token = load_latest_token()
     post_text_message(token,message)

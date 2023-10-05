@@ -6,9 +6,10 @@ import os
 rest_api_key = os.environ['KAKAO_REST_API_KEY']
 
 def renew_token():
-    with open("kakao_token.json","r") as f:
-        token_data = json.load(f)
-    refresh_token = token_data["refresh_token"]
+    #with open("kakao_token.json","r") as f:
+    #    token_data = json.load(f)
+
+    refresh_token = os.environ['REFRESH_TOKEN']
 
 
     redirect_uri = "https://kauth.kakao.com/oauth/token"
@@ -28,7 +29,7 @@ def renew_token():
 def load_latest_token():
     with open("token.json", "r") as f:
         latest_token  = json.load(f)
-    return latest_token
+    return latest_token["access_token"]
 
 def post_text_message(new_token,message):
 
