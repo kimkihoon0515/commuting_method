@@ -4,8 +4,8 @@
 name: run main.py
 
 on:
-  #schedule:
-  #  - cron: '23 21 * * 1-5'
+  schedule:
+    - cron: '23 21 * * 1-5'
   push:
     branches: ["main"]
   pull_request:
