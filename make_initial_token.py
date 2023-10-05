@@ -37,8 +37,8 @@ def post_initial_token():
     driver.find_element(By.XPATH,'//*[@id="loginId--1"]').send_keys(f'{id}')
     driver.find_element(By.XPATH,'//*[@id="password--2"]').send_keys(f'{pw}')
     driver.find_element(By.XPATH,'//*[@id="mainContent"]/div/div/form/div[4]/button[1]').click()
-    time.sleep(30)
-    WebDriverWait(driver, 30)
+    time.sleep(300)
+    WebDriverWait(driver, 300)
     new_url = driver.current_url
     authorize_code = new_url.split('code=')[1]
     driver.quit()
