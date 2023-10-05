@@ -34,7 +34,7 @@ def load_latest_token():
 def post_text_message(new_token,message):
 
     api = Message(service_key=rest_api_key)
-    access_token = new_token["access_token"]
+    access_token = new_token
     api.set_access_token(access_token)
 
     text = message
